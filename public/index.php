@@ -1,3 +1,5 @@
 <?php
+require '../vendor/autoload.php';
 
-echo "PONG";
+$app = new \Mooti\Xizlr\Core\App;
+$app->run();
