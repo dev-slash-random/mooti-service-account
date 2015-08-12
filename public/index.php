@@ -9,7 +9,7 @@ $userConfigDir    = '/etc/mooti/config';
 $config      = new \Mooti\Xizlr\Core\Config($moduleName, $environmentName, $defaultConfigDir, $userConfigDir);
 $application = new \Mooti\Xizlr\Core\Application;
 
-$response = $application->run($config, $_SERVER, $_REQUEST);
+$response = $application->run($config, $_SERVER, $_POST);
 
 $headers = $response->getHeaders();
 
