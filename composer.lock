@@ -62,12 +62,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/mooti/xizlr-core.git",
-                "reference": "9a08912434e11091e013543945f0820e73de825a"
+                "reference": "5780794f4a512f4e7f67027c2803da00cf38b80e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mooti/xizlr-core/zipball/9a08912434e11091e013543945f0820e73de825a",
-                "reference": "9a08912434e11091e013543945f0820e73de825a",
+                "url": "https://api.github.com/repos/mooti/xizlr-core/zipball/5780794f4a512f4e7f67027c2803da00cf38b80e",
+                "reference": "5780794f4a512f4e7f67027c2803da00cf38b80e",
                 "shasum": ""
             },
             "require": {
@@ -89,7 +89,7 @@
                 "source": "https://github.com/mooti/xizlr-core/tree/master",
                 "issues": "https://github.com/mooti/xizlr-core/issues"
             },
-            "time": "2015-08-12 15:04:53"
+            "time": "2015-08-12 17:07:30"
         },
         {
             "name": "mooti/xizlr-testable",
@@ -693,16 +693,16 @@
         },
         {
             "name": "phpunit/php-token-stream",
-            "version": "1.4.3",
+            "version": "1.4.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-token-stream.git",
-                "reference": "7a9b0969488c3c54fd62b4d504b3ec758fd005d9"
+                "reference": "09fc125d65c344c53a7c7ad8f261e3f3af9f76c5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/7a9b0969488c3c54fd62b4d504b3ec758fd005d9",
-                "reference": "7a9b0969488c3c54fd62b4d504b3ec758fd005d9",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/09fc125d65c344c53a7c7ad8f261e3f3af9f76c5",
+                "reference": "09fc125d65c344c53a7c7ad8f261e3f3af9f76c5",
                 "shasum": ""
             },
             "require": {
@@ -738,7 +738,7 @@
             "keywords": [
                 "tokenizer"
             ],
-            "time": "2015-06-19 03:43:16"
+            "time": "2015-08-13 14:23:08"
         },
         {
             "name": "phpunit/phpunit",
