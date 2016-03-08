@@ -582,16 +582,16 @@
         },
         {
             "name": "mooti/xizlr-core",
-            "version": "1.0.2",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mooti/xizlr-core.git",
-                "reference": "d3746460946438c5649823d68b47ae37573edf67"
+                "reference": "ab5071b849bc40c6a296f7d88574eb3777c30fdc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mooti/xizlr-core/zipball/d3746460946438c5649823d68b47ae37573edf67",
-                "reference": "d3746460946438c5649823d68b47ae37573edf67",
+                "url": "https://api.github.com/repos/mooti/xizlr-core/zipball/ab5071b849bc40c6a296f7d88574eb3777c30fdc",
+                "reference": "ab5071b849bc40c6a296f7d88574eb3777c30fdc",
                 "shasum": ""
             },
             "require": {
@@ -622,10 +622,10 @@
                 "Apache-2.0"
             ],
             "support": {
-                "source": "https://github.com/mooti/xizlr-core/tree/1.0.2",
+                "source": "https://github.com/mooti/xizlr-core/tree/1.0.3",
                 "issues": "https://github.com/mooti/xizlr-core/issues"
             },
-            "time": "2016-03-04 17:23:13"
+            "time": "2016-03-07 16:10:24"
         },
         {
             "name": "mooti/xizlr-testable",

@@ -34,4 +34,11 @@ class User extends BaseController
 
         return $this->render($users, $response);
     }
+
+    public function getUser($id, Request $request, Response $response)
+    {
+        $userMapper = $this->get('mooti.model.mapperFactory')->getMapper('user');
+        $user = $userMapper->find($id);
+        return $this->render($user, $response);
+    }
 }
