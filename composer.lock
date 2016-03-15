@@ -582,16 +582,16 @@
         },
         {
             "name": "mooti/xizlr-core",
-            "version": "1.0.3",
+            "version": "1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mooti/xizlr-core.git",
-                "reference": "ab5071b849bc40c6a296f7d88574eb3777c30fdc"
+                "reference": "10fe36a37bec520f7d08493c12e0581a647abcce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mooti/xizlr-core/zipball/ab5071b849bc40c6a296f7d88574eb3777c30fdc",
-                "reference": "ab5071b849bc40c6a296f7d88574eb3777c30fdc",
+                "url": "https://api.github.com/repos/mooti/xizlr-core/zipball/10fe36a37bec520f7d08493c12e0581a647abcce",
+                "reference": "10fe36a37bec520f7d08493c12e0581a647abcce",
                 "shasum": ""
             },
             "require": {
@@ -622,10 +622,10 @@
                 "Apache-2.0"
             ],
             "support": {
-                "source": "https://github.com/mooti/xizlr-core/tree/1.0.3",
+                "source": "https://github.com/mooti/xizlr-core/tree/1.0.5",
                 "issues": "https://github.com/mooti/xizlr-core/issues"
             },
-            "time": "2016-03-07 16:10:24"
+            "time": "2016-03-15 17:17:02"
         },
         {
             "name": "mooti/xizlr-testable",
@@ -943,16 +943,16 @@
         },
         {
             "name": "symfony/polyfill-php54",
-            "version": "v1.1.0",
+            "version": "v1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php54.git",
-                "reference": "74663d5a2ff3c530c1bc0571500e0feec9094054"
+                "reference": "9ba741ca01c77282ecf5796c2c1d667f03454ffb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php54/zipball/74663d5a2ff3c530c1bc0571500e0feec9094054",
-                "reference": "74663d5a2ff3c530c1bc0571500e0feec9094054",
+                "url": "https://api.github.com/repos/symfony/polyfill-php54/zipball/9ba741ca01c77282ecf5796c2c1d667f03454ffb",
+                "reference": "9ba741ca01c77282ecf5796c2c1d667f03454ffb",
                 "shasum": ""
             },
             "require": {
@@ -997,11 +997,11 @@
                 "portable",
                 "shim"
             ],
-            "time": "2016-01-20 09:13:37"
+            "time": "2016-01-25 19:13:00"
         },
         {
             "name": "symfony/polyfill-php55",
-            "version": "v1.1.0",
+            "version": "v1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php55.git",
@@ -2059,7 +2059,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/config/zipball/51909bf7f5d763d125a67781942d9293f65afae7",
+                "url": "https://api.github.com/repos/symfony/config/zipball/52783b199f0899b037441d9f2b3b9ca84e22b60a",
                 "reference": "51909bf7f5d763d125a67781942d9293f65afae7",
                 "shasum": ""
             },
