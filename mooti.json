@@ -1,0 +1,10 @@
+{
+    "name" : "mooti.service.account",
+    "server" : {
+        "type" : "php-standard",
+        "document_root": "public/index.php"
+    },
+    "scripts" : [
+        "/usr/bin/composer install"
+    ]
+}
