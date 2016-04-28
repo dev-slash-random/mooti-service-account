@@ -2,7 +2,8 @@
     "name" : "mooti.service.account",
     "server" : {
         "type" : "php-standard",
-        "document_root": "public/index.php"
+        "web_root" : "public",
+        "index_file" : "index.php"
     },
     "scripts" : [
         "/usr/bin/composer install"
