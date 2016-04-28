@@ -7,17 +7,17 @@
 
 namespace Mooti\Service\Account\Controller;
 
-use Mooti\Xizlr\Core\BaseController;
+use Mooti\Framework\Rest\BaseController;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Mooti\Xizlr\Core\Xizlr;
+use Mooti\Framework\Framework;
 
 use Mooti\Service\Account\Model\User\UserMapper;
 
 class User extends BaseController
 {
-    use Xizlr;
+    use Framework;
 
     public function getUsers(Request $request, Response $response)
     {

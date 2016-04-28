@@ -7,11 +7,11 @@
 
 namespace Mooti\Service\Account\Model\User;
 
-use Mooti\Xizlr\Core\Xizlr;
+use Mooti\Framework\Framework;
 
 class UserMapper
 {
-    use Xizlr;
+    use Framework;
 
     private $users = [
         1 => [
@@ -28,11 +28,15 @@ class UserMapper
 
     public function findAll()
     {
-        return $this->users;
+        $returnUsers = [];
+        foreach ($this->users as $userDetails) {
+            $returnUsers[] = new User($userDetails);
+        }
+        return $returnUsers;
     }
 
     public function find($id)
     {
-        return $this->users[$id];
+        return new User($this->users[$id]);
     }
 }

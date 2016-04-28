@@ -5,6 +5,6 @@
         'users' => Mooti\Service\Account\Controller\User::class
     ];
 
-    $app = new Mooti\Xizlr\Core\RestApplication($controllers);
+    $app = new Mooti\Framework\Rest\Application($controllers);
     $app->bootstrap();
     $app->run();

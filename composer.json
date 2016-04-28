@@ -1,11 +1,5 @@
 {
-    "name":"mooti/account-module",
-    "repositories": [
-        {
-            "type": "vcs",
-            "url":  "git@github.com:mooti/xizlr-core.git"
-        }
-    ],
+    "name":"mooti/account-service",
     "require": {
         "mooti/framework": "^0.0.4"
     },
