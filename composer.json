@@ -8,8 +8,5 @@
     },
     "autoload": {
         "psr-4": {"Mooti\\Service\\Account\\": "src/"}
-    },
-    "config": {
-        "bin-dir": "bin/vendor"
     }
 }
