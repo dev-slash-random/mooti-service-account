@@ -7,7 +7,7 @@
 
 namespace Mooti\Service\Account\Controller;
 
-use Mooti\Framework\Rest\BaseController;
+use Mooti\Framework\Application\Rest\BaseController;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,10 +26,10 @@ class User extends BaseController
         return $this->render($users, $response);
     }
 
-    public function getUser($id, Request $request, Response $response)
+    public function getUser($uuid, Request $request, Response $response)
     {
         $userMapper = $this->createNew(UserMapper::class);
-        $user = $userMapper->find($id);
+        $user = $userMapper->getUser($uuid);
         return $this->render($user, $response);
     }
 }

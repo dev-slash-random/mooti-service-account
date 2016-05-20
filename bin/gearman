@@ -1,0 +1,33 @@
+#!/usr/bin/env php
+<?php
+
+$autoloadLocations = [
+	__DIR__ . '/../../../autoload.php',
+	__DIR__ . '/../../autoload.php',
+	__DIR__ . '/../vendor/autoload.php',
+	__DIR__ . '/vendor/autoload.php'
+];
+
+$found = false;
+foreach ($autoloadLocations as $autoloadLocation) {
+    if (file_exists($autoloadLocation)) {
+        require_once $autoloadLocation;
+        $found = true;
+        break;
+    }
+}
+
+if(!$found) {
+	fwrite(STDERR, PHP_EOL.'cannot find autoload file'.PHP_EOL.PHP_EOL);
+}
+
+use Mooti\Framework\Application\Cli\Application;
+
+$commands = [
+	'Mooti\Service\Account\Command\Gearman\StartWorkerCommand'
+];
+
+$application = new Application($commands);
+$application->bootstrap(new Mooti\Service\Account\ServiceProvider\ServiceProvider());
+$application->setName('Gearman');
+$application->run();

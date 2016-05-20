@@ -16,11 +16,11 @@ class User implements JsonSerializable
     use Framework;
 
     protected $rules = [
-        'id' => [
+        'uuid' => [
             'required' => true,
-            'type'     => 'number',
+            'type'     => 'string',
             'constraints' => [
-                'integer' => true   
+                'length' => [36,36]
             ]
         ],
         'firstName' => [
@@ -45,7 +45,7 @@ class User implements JsonSerializable
     {
         $validator = $this->createNew(Validator::class);
         
-        if ($validator->isValid($this->rules, $this->config) == false) {
+        if ($validator->isValid($this->rules, $this->data) == false) {
             throw new InvalidModelException('The model data is invalid: ' . print_r($validator->getErrors(), 1));
         }
     }

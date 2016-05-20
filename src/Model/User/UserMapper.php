@@ -8,6 +8,12 @@
 namespace Mooti\Service\Account\Model\User;
 
 use Mooti\Framework\Framework;
+use Mooti\Service\Account\ServiceProvider\ServiceProvider as AccountServiceProvider;
+use NilPortugues\Sql\QueryBuilder\Builder\MySqlBuilder;
+use PDO;
+use Redis;
+use DateTime;
+use GearmanClient;
 
 class UserMapper
 {
@@ -41,7 +47,7 @@ class UserMapper
         /*$fields = [
             'id' => ['=', 1]
         ];*/
-        $query = $this->createNew(Query);
+        /*$query = $this->createNew(Query);
         
         $query->setCollection('users');
         $query->setFields($fields);
@@ -70,29 +76,97 @@ class UserMapper
                 'items' => $returnUsers
             ]
         ];
-        return $returnUsers;
+        return $returnUsers;*/
+        return [];
     }
 
-    public function getUser($id)
+    public function getUserFromDatabase($uuid)
     {
-        //nilportugues/php-sql-query-builder
-        $db = $this->get(ServiceProvider::MYSQL_DATABASE);
-        
-        $builder = createNew(MySqlBuilder::class); 
+        $database = $this->get(AccountServiceProvider::DATABASE_MYSQL);
+        $pdo = $database->getConnection();
 
-        $query = $builder->select()
-            ->setTable('user')
-            ->setColumns(['id' => 'id', 'firstName' => 'first_name', 'lastName' => 'last_name'])
+        $builder = $this->createNew(MySqlBuilder::class); 
+
+        $query = $builder->select()->setTable('user');
+
+        $query->setColumns(['uuid' => 'uuid', 'firstName' => 'first_name', 'lastName' => 'last_name'])
             ->where()
-            ->equals('user_id', 1)
-            ->limit(1);
+            ->equals('uuid', $uuid);
+    
+        $query->limit(0, 1);
 
-        $this->log($builder->writeFormatted($query));
+        $sql = $builder->write($query);
+        $values = $builder->getValues();
 
-        $results = $db->query($builder->write($query));
+        $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false );
+        $statement = $pdo->prepare($sql);
+        $statement->execute($values);
+        $row = $statement->fetch(PDO::FETCH_ASSOC);
 
-        $userData = $results[0];
-
-        return new User($userData);
+        return new User($row);
     }
+
+    public function getItemFromCache($uuid)
+    {
+        $redis = new Redis();
+        $redis->connect('127.0.0.1');
+        $redis->setOption(Redis::OPT_SERIALIZER, Redis::SERIALIZER_PHP); 
+        $cacheItem = json_decode($redis->get($uuid), true);
+        $timeNow = new DateTime();
+        if (!$cacheItem) {
+            $cacheItem = [       
+                'item'     => null,
+                'updating' => false,
+                'expire'   => $timeNow->format('r'),
+                'status'   => 'MISS'
+            ];  
+        } elseif ($cacheItem['updating'] == true) {
+            $cacheItem['status'] = 'EXPIRED';
+        } elseif ($this->createNew(DateTime::class, $cacheItem['expire']) > $timeNow) {
+            $cacheItem['status'] = 'HIT';
+        } else {
+            $cacheItem['status'] = 'EXPIRED';
+        }
+        $cacheItem['time'] = $timeNow->format('r');
+        return $cacheItem;
+    }
+
+    public function scheduleCacheItem($name, $uuid)
+    {
+        $gmclient= new GearmanClient();
+        $gmclient->addServer();
+        $jobHandle = $gmclient->doBackground($name.'.cache', $uuid);
+    }
+
+    public function cacheUser($uuid)
+    {
+        $user = $this->getUserFromDatabase($uuid);
+        $payload = [
+            'item'   => $user,
+            'updating' => false,
+            'expire' => $this->createNew(DateTime::class, '+60 seconds')->format('r')
+        ];
+        $cacheItem = json_encode($payload);
+        $redis = new Redis();
+        $redis->connect('127.0.0.1');
+        $redis->setOption(Redis::OPT_SERIALIZER, Redis::SERIALIZER_PHP); 
+        $redis->set($uuid, $cacheItem);
+        return $cacheItem;
+    }
+
+    public function getUser($uuid)
+    {
+        $cacheItem = $this->getItemFromCache($uuid);
+
+        $user = $cacheItem['item'];
+        if (empty($user)) {
+            $user = $this->getUserFromDatabase($uuid);
+        }
+        if (in_array($cacheItem['status'], ['MISS', 'EXPIRED'], true)) {
+            $this->scheduleCacheItem('mooti.account.user', $uuid);
+        }
+        return $user;
+    }    
+
+
 }
