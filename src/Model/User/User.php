@@ -8,7 +8,7 @@
 namespace Mooti\Service\Account\Model\User;
 
 use Mooti\Framework\Framework;
-//use Mooti\Validator\Validator;
+use Mooti\Validator\Validator;
 use JsonSerializable;
 
 class User implements JsonSerializable
@@ -44,7 +44,7 @@ class User implements JsonSerializable
     {
         $validator = $this->createNew(Validator::class);
         
-        if ($validator->isValid($this->rules, $this->config) == false) {
+        if ($validator->isValid($this->rules, $this->data) == false) {
             throw new InvalidModelException('The model data is invalid: ' . print_r($validator->getErrors(), 1));
         }
     }

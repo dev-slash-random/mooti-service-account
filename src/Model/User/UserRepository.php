@@ -13,34 +13,7 @@ class UserMapper
 {
     use Framework;
 
-    protected $rules = [
-        'id' => [
-            'required' => true,
-            'type'     => 'number',
-            'constraints' => [
-                'integer' => true   
-            ]
-        ],
-        'firstName' => [
-            'required' => true,
-            'type'     => 'string'
-        ],
-        'lastName' => [
-            'required' => true,
-            'type'     => 'string'
-        ]
-    ];
-
-    public function createEntityFromData($data)
-    {
-
-    }
-
-    public function createUserFromData($data)
-    {
-
-    }
-    private $dataRules = [
+    private $users = [
         1 => [
             'id'        => 1,
             'firstName' => 'Ken',

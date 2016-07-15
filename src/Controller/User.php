@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Mooti\Framework\Framework;
 
-use Mooti\Service\Account\Model\User\UserMapper;
+use Mooti\Service\Account\Model\User\UserRepository;
 
 class User extends BaseController
 {
@@ -21,15 +21,15 @@ class User extends BaseController
 
     public function getUsers(Request $request, Response $response)
     {
-        $userMapper = $this->createNew(UserMapper::class);
-        $users = $userMapper->findAll();
+        $userRepository = $this->createNew(UserRepository::class);
+        $users = $userRepository->findAll();
         return $this->render($users, $response);
     }
 
     public function getUser($id, Request $request, Response $response)
     {
-        $userMapper = $this->createNew(UserMapper::class);
-        $user = $userMapper->find($id);
+        $userRepository = $this->createNew(UserRepository::class);
+        $user = $userRepository->find($id);
         return $this->render($user, $response);
     }
 }
