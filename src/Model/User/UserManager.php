@@ -15,7 +15,7 @@ use Redis;
 use DateTime;
 use GearmanClient;
 
-class UserMapper
+class UserManager
 {
     use Framework;
 
@@ -78,32 +78,6 @@ class UserMapper
         ];
         return $returnUsers;*/
         return [];
-    }
-
-    public function getUserFromDatabase($uuid)
-    {
-        $database = $this->get(AccountServiceProvider::DATABASE_MYSQL);
-        $pdo = $database->getConnection();
-
-        $builder = $this->createNew(MySqlBuilder::class); 
-
-        $query = $builder->select()->setTable('user');
-
-        $query->setColumns(['uuid' => 'uuid', 'firstName' => 'first_name', 'lastName' => 'last_name'])
-            ->where()
-            ->equals('uuid', $uuid);
-    
-        $query->limit(0, 1);
-
-        $sql = $builder->write($query);
-        $values = $builder->getValues();
-
-        $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false );
-        $statement = $pdo->prepare($sql);
-        $statement->execute($values);
-        $row = $statement->fetch(PDO::FETCH_ASSOC);
-
-        return new User($row);
     }
 
     public function getItemFromCache($uuid)
